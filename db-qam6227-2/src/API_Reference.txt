@@ -1,0 +1,255 @@
+chat.py
+
+drop_tables
+    This method is used to drop the tables if they exist.
+    no arguments
+    the tables should drop if they have been made prior.
+    nothing is returned
+
+create_community_table
+    used to create table for chat communities
+    no arguments
+    a community table shall be created when ran
+    nothing returned
+
+create_channel_table
+    used to create the table for the community channels
+    no arguments
+    a channel table shall be made when ran
+    nothing is returned
+
+create_mod_table
+    used to create a table with moderator information
+    no arguments
+    a moderator table shall be made when ran
+    no arguments
+
+create_users_in_communities
+    used to create a table that track the communities a user is part of
+    no arguments
+    the table shall be create when this function is ran
+    no arguments
+
+create_private_channel_users
+    used to create a table that keeps tack of users in a private channel
+    no arguments
+    table shall be made when this is ran
+
+
+create_user_table
+    This method is used to create the table for the users.
+    no arguments
+    A user table shall be crated it if does not exist
+    nothing is returned
+
+create_suspension_table
+    This method is used to create the table for suspended users.
+    no arguments
+    a suspension table shall be created if it does not exist
+    nothing is returned
+
+create_message_table
+    This method is used to create the table for messages
+    no arguments
+    a message table shall be made if it does not exist
+    nothing is returned
+
+add_community
+    used to add a new community
+    argument: comm_name
+    a new community should be inserted into the table
+    nothing is returned
+
+add_to_community
+    used to add a new community a user is part of
+    arguments: user_id, comm_id
+    the recent community a user was added to should be found in this table after running
+    nothing is returned
+
+add_channel
+    used to add a new channel to the community
+    arguments: chan_name, community
+    a channel shall be added when ran
+    nothing is returned
+
+add_to_channel
+    used to add what private channel the user is part of
+    arguments: user_id, chan_id, comm_id)
+    the recent channel that a suer became part of should be found here
+    nothing is returned
+
+
+add_user
+    this method adds a new user to the user table.
+    arguments include: display_name, first_name and email
+    a new user should be in the table with a display name, first name, last name, phone number and email
+    nothing is returned
+
+update_user_info
+    this method allows certain user info to be updated.
+    arguments include: user_id, display_name, first_name, and email.
+        (besides user name, all have a value of none)
+    a user should be able to update any piece of info as long as the value isn't "none"
+    nothing is returned
+
+suspend_user
+    this method suspends a user by putting them into the suspension table and sending a suspension message.
+    arguments include: display_name, first_name, last_name, suspension_end_date,user_id and comm_id)
+    a user should be in the suspension table after running this method and a message should be sent with and end date
+    nothing is returned
+
+send_message
+    this method allows a user to send a message, a suspension check is done before the message is sent
+    arguments include: first_name, display_name, time_stamp, message, user_id, comm_id and chan_id
+    if a user is not suspended, their message will send. Otherwise it shouldn't and they will be notified
+    nothing is returned
+
+delete_user
+    this method deletes a user from the user table
+    arguments include: first_name
+    A user should be removed from the table after running this method
+    nothing is returned
+
+delete_message
+    used to delete a message from the system
+    arguments: firs_name, message, comm_id, chan_id
+    a message shall be deleted from the system
+    nothing is returned
+
+
+find_message_with_word
+    this messages finds messages that consist of a certain word or letter
+    arguments include: user_id, word
+    all messages containing said word or letter shall be found after running this
+    returns a list of tuples
+
+add_moderator
+    adds a new moderator to a community
+    arguments: first_name, user_id, comm_id
+    a community should have a moderator
+    nothing is returned
+
+moderator_privilege
+    this gives the moderator all their privilege. allows them to delete ,messages and suspend users
+    arguments: mod_name, first_name, user_id, message, comm_id, chan_id, display_name, suspension_end_date
+    a moderator should be able to delete a message or suspend a user
+    nothing is returned
+
+user_privileges
+    this gives the user the users the ability to add channels and add people to them
+    arguments: first_name, chan_name, user_id, chan_id, comm_id
+    user should be able to create a private channel and add people to it
+    nothing is returned
+
+read_message
+    used for a reader to read a message from a channel
+    arguments: first_name, chan_id, user_id, use_id_message, word)
+    if user is part of that channel, they should be able to read the messages
+    nothing is returned
+
+build_tables
+    this method builds all the tables (messages, users, suspended users) and inserts their data
+    no arguments
+    tables should be created with data inserted in them
+    nothing is returned
+
+build_chat
+    function sets up the chat with communities and channels
+    no arguments
+    tables should have communities and channels
+    nothing is returned
+
+build_system
+    runs the previous 2 functions
+    no arguments
+    tables should be created with communities and channels
+    nothing is returned
+
+test_chat.py
+
+
+test_create_tables
+    this test creates the tables and checks if they are empty
+    arguments include: self
+    the tables should be empty in this test
+    nothing is returned
+
+test_total_users
+    this tests finds the number of users in the system using the count function
+    arguments include: self
+    there should be 5 users in the system (based on original data from the insert)
+    nothing is returned
+
+test_new_user
+    this tests the add user function by adding a new user to the system
+    arguments include: self
+    a new user Lex should be in the system
+    nothing is returned
+
+test_user_ability
+    this tests what a regular user can do
+    argument: self
+    curly should not be able to delete a message
+    nothing is returned
+
+test_moderator_ability
+    this tests what a moderator can do
+    argument: self
+    Lex should be able to delete a message
+    nothing si returned
+
+test_new_channel
+    this tests the ability of a user to create a new channel
+    argument: self
+    lex should be able to make 2 channels
+    nothing is returned
+
+test_private_channel
+    this tests the ability of making a private channel
+    argument: self
+    private channel should be made with limited users, then another shoudl be added
+    nothing is returned
+
+csv_read.py
+
+
+read_csv
+    this method reads in a csv file and adds the messages to the message table
+    arguments include: file
+    the message table should include all message between abbott and costello
+    nothing is returned
+
+load_messages
+    this method reads in a csv file and adds the messages to the message table
+    arguments include: file
+    the message table should include all message between curly, moe and larry
+    nothing is returned
+
+load_user_csv
+    this function reads in a csv file and loads in the suers to the user table
+    argument: file
+    user table should contain users
+    nothing is returned
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
